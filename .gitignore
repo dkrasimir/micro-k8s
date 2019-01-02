@@ -1,0 +1,11 @@
+
+.project
+.classpath
+.idea
+.cache
+.DS_Store
+target
+work
+.settings
+.vscode
+.factorypath

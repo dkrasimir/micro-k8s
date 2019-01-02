@@ -1,0 +1,11 @@
+version: "3.0"
+services:
+  micro:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: micro
+    image: 016973021151.dkr.ecr.us-west-2.amazonaws.com/dkrasimir/micro
+    ports:
+      - "50080:8080"
+      - "50048:4848"
