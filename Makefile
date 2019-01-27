@@ -48,3 +48,7 @@ compose-down:
 
 deploy-stack:
 	docker stack deploy --compose-file docker-compose.yml micro-stack
+
+port-forward:
+	kubectl -n default port-forward svc/micro-pod 38080:80
+	firefox http://localhost:38080/micro-sample/rs/monitoring/ping
