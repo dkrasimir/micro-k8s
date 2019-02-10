@@ -16,6 +16,12 @@ chmod:
 build: 
 	./docker-build.sh
 
+awslogin:
+	aws ecr get-login --region us-west-2
+
+push:
+	docker push 016973021151.dkr.ecr.us-west-2.amazonaws.com/dkrasimir/micro:latest
+
 run:
 	./docker-start.sh
 

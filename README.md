@@ -1,3 +1,33 @@
+# Download the newes eksctl and install it. 
+
+```
+https://github.com/weaveworks/eksctl/releases/
+```
+
+# Download AWS IAM Authenticator:
+```
+curl -o heptio-authenticator-aws https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator
+```
+
+# Setup eks cluster
+```
+eksctl create cluster --name eks-nttdata --nodes 3 --region us-west-2
+```
+
+# Install Helm 
+
+```
+kubectl -n kube-system create sa tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+```
+
+# Install nginx-ingress controller 
+
+```
+helm install stable/nginx-ingress --name micro-nginx-ingress-controller --set rbac.create=true
+```
+
 # HOWTO Deploy micro on Kubernetes
 
 ```

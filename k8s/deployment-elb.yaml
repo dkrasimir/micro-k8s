@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: micro-elb
+  labels:
+    name: micro-elb
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: micro-elb
+    spec:
+      containers:
+      - name: micro-elb
+        image: 016973021151.dkr.ecr.us-west-2.amazonaws.com/dkrasimir/micro:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: "http"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: micro-elb
+  labels: 
+    app: micro-elb
+spec:
+  selector:
+    app: micro-elb
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  type: LoadBalancer
